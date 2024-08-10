@@ -1,0 +1,111 @@
+.square{
+    width: 100px;
+    height: 100px;
+    background-color: red;
+}
+
+// iniciar sass => sass --watch (nome_do_arquivo.scss):(nome_do_arquivo.css)
+// ex.: sass --watch style.scss:style.css
+// entre pastas => sass --watch sass/style.scss:css/style.css
+
+// sair do watch => Ctrl + C
+
+
+
+// VARIÁVEIS -----------------------------------------------------------------------------------------
+$btn-color: aqua;
+
+.btn1{
+    background-color: $btn-color;
+    width: 50px;
+}
+
+.btn2{
+    background-color: $btn-color;
+    width: 70px;
+}
+
+// NESTING -------------------------------------------------------------------------------------------
+
+.classe1{
+    ul{
+        background-color: red;
+    }
+
+    li{
+        background-color: blue;
+    }
+
+    button{
+        background-color: green;
+        transition: .2s ease;
+        cursor: pointer;
+
+        &:hover{
+            background-color: lightgreen;
+        }
+    }
+}
+
+// IMPORT -------------------------------------------------------------------------------------------
+@import "./colors/colors.scss";
+
+.using-import{
+    .btn{
+        background-color: $primary-clr;
+        color: $secondary-clr;
+        cursor: pointer;
+    }
+}
+
+// MIXIN ---------------------------------------------------------------------------------------------
+@mixin texts-styles($color, $font-size){
+    color: $color;
+    font-size: $font-size
+}
+
+.texts{
+    h1{
+        @include texts-styles(red, 2rem)
+    }
+    p{
+        @include texts-styles(blue, 1.25rem)
+    }
+}
+
+// INHERITANCE E EXTEND -----------------------------------------------------------------------------------------
+
+.btn{
+    width: 125px;
+    padding: 10px 0;
+    border-radius: 20px;
+    display: block;
+    margin-top: 10px;
+
+    &.btn-amarelo{
+        background-color: yellow;
+    }
+
+    &.btn-azul{
+        background-color: blue;
+        color: white;
+    }
+}
+
+.btn-roxo{
+    @extend .btn;
+    background-color: purple;
+    color: white;
+}
+
+$primary-color: aqua;
+$background-btn: $primary-color;
+
+.test-btn{
+    background-color: $background-btn;
+    margin-top: 20px;
+}
+
+// MINIFY CSS COMMAND -----------------------------------------------------------------------------------------------
+// sass sass/style.scss:css/style.css --style compressed
+// deixa o carregamento do css na página mais rapido
